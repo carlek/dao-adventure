@@ -9,9 +9,9 @@ import Hash "mo:base/Hash";
 import Nat32 "mo:base/Nat32";
 import Nat "mo:base/Nat";
 import Iter "mo:base/Iter";
-import Account "lib/account";
-import Http "lib/http";
-import Logo "lib/Logo";
+import Account "account";
+import Http "http";
+import Logo "Logo";
 actor {
 
     let logo : Text = Logo.getLogo();
@@ -324,6 +324,10 @@ actor {
         };
     };
 
+    public shared query ({ caller }) func whoami() : async Principal {
+        return caller;
+    };
+
     type DAOInfo = {
         name : Text;
         manifesto : Text;
@@ -378,9 +382,5 @@ actor {
             streaming_strategy = null;
         };
         return (response);
-    };
-
-    public shared query ({ caller }) func whoami() : async Principal {
-        return caller;
     };
 };
